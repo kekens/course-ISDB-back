@@ -12,7 +12,6 @@ import isdb.courseback.service.ValidationService;
 
 import javax.validation.Valid;
 
-@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
@@ -34,7 +33,7 @@ public class AuthController {
         } else {
             if (authService.isUsernameFree(userDto.getUsername())) {
                 authService.signup(userDto);
-                return new ResponseEntity<String>(HttpStatus.OK);
+                return new ResponseEntity<>(HttpStatus.OK);
             } else {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Username " + userDto.getUsername() + " is taken");
             }

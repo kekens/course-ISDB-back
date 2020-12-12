@@ -8,7 +8,9 @@ import lombok.Data;
 @AllArgsConstructor
 @Builder
 public class AuthenticationResponse {
-    private int id;
     private String authenticationToken;
+    private int minerId;
     private String username;
+    private String part;
+    private int brigadeId;
 }

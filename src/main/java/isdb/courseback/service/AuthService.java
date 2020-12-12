@@ -1,5 +1,9 @@
 package isdb.courseback.service;
 
+import isdb.courseback.model.Brigade;
+import isdb.courseback.model.BrigadeRecord;
+import isdb.courseback.repository.BrigadeRecordRepository;
+import isdb.courseback.repository.BrigadeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -21,14 +25,19 @@ import java.util.Optional;
 public class AuthService {
 
     private UserRepository userRepository;
+    private BrigadeRecordRepository brigadeRecordRepository;
+    private BrigadeRepository brigadeRepository;
     private PasswordEncoder passwordEncoder;
     private AuthenticationManager authenticationManager;
     private JwtProvider jwtProvider;
 
     @Autowired
-    public AuthService(UserRepository userRepository, PasswordEncoder passwordEncoder,
+    public AuthService(UserRepository userRepository, BrigadeRecordRepository brigadeRecordRepository,
+                       BrigadeRepository brigadeRepository, PasswordEncoder passwordEncoder,
                        AuthenticationManager authenticationManager, JwtProvider jwtProvider) {
         this.userRepository = userRepository;
+        this.brigadeRecordRepository = brigadeRecordRepository;
+        this.brigadeRepository = brigadeRepository;
         this.passwordEncoder = passwordEncoder;
         this.authenticationManager = authenticationManager;
         this.jwtProvider = jwtProvider;
@@ -47,7 +56,7 @@ public class AuthService {
     }
 
     public AuthenticationResponse login(UserDto userDto) {
-        Authentication authenticate = null;
+        Authentication authenticate;
         try {
             authenticate = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userDto.getUsername(),
                     userDto.getPassword()));
@@ -62,11 +71,23 @@ public class AuthService {
         String authenticationToken = jwtProvider.generateToken(authenticate);
         String username = userDto.getUsername();
         Optional<User> optionalUser = userRepository.findByUsername(username);
-        int id = optionalUser.map(User::getId).orElse(0);
+        Optional<BrigadeRecord> optionalBrigadeRecord = brigadeRecordRepository.findByMinerId(optionalUser.map(User::getId).orElse(0));
+        int minerId = optionalUser.map(User::getId).orElse(0);
+        String part = optionalBrigadeRecord.map(BrigadeRecord::getPart).orElse("");
+        int brigadeId;
+        if (part.equals("")) {
+            part = "БРИГАДИР";
+            brigadeId = brigadeRepository.findByForemanId(minerId).map(Brigade::getForemanId).orElse(0);
+        } else {
+            part = optionalBrigadeRecord.map(BrigadeRecord::getPart).orElse("");
+            brigadeId = optionalBrigadeRecord.map(BrigadeRecord::getBrigadeId).orElse(0);
+        }
         return AuthenticationResponse.builder()
-                .id(id)
                 .authenticationToken(authenticationToken)
+                .minerId(minerId)
                 .username(username)
+                .part(part)
+                .brigadeId(brigadeId)
                 .build();
     }
 
