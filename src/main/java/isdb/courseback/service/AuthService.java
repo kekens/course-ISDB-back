@@ -77,7 +77,7 @@ public class AuthService {
         int brigadeId;
         if (part.equals("")) {
             part = "БРИГАДИР";
-            brigadeId = brigadeRepository.findByForemanId(minerId).map(Brigade::getForemanId).orElse(0);
+            brigadeId = brigadeRepository.findByForemanId(minerId).map(Brigade::getBrigadeId).orElse(0);
         } else {
             part = optionalBrigadeRecord.map(BrigadeRecord::getPart).orElse("");
             brigadeId = optionalBrigadeRecord.map(BrigadeRecord::getBrigadeId).orElse(0);
