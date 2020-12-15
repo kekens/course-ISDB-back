@@ -20,11 +20,11 @@ public class DeliveryController {
 
     @GetMapping("/do/{minerId}")
     public ResponseEntity<String> addDelivering(@PathVariable @RequestBody int minerId) {
-        String error = this.deliveryService.doDelivery(minerId);
-        if (error.equals("")) {
+        String message = this.deliveryService.doDelivery(minerId);
+        if (message.contains("[")) {
             return new ResponseEntity<>(HttpStatus.OK);
         } else {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(message);
         }
     }
 }

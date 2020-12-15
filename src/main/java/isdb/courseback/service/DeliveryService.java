@@ -1,5 +1,11 @@
 package isdb.courseback.service;
 
+import isdb.courseback.model.Auto;
+import isdb.courseback.model.Equipment;
+import isdb.courseback.repository.AutoRepository;
+import isdb.courseback.repository.DeliveryAutoRepository;
+import isdb.courseback.repository.DeliveryEquipmentRepository;
+import isdb.courseback.repository.EquipmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -7,15 +13,25 @@ import javax.persistence.EntityManager;
 import javax.persistence.ParameterMode;
 import javax.persistence.PersistenceException;
 import javax.persistence.StoredProcedureQuery;
+import java.util.Optional;
 
 @Service
 public class DeliveryService {
 
     private EntityManager entityManager;
+    private DeliveryEquipmentRepository deliveryEquipmentRepository;
+    private DeliveryAutoRepository deliveryAutoRepository;
+    private EquipmentRepository equipmentRepository;
+    private AutoRepository autoRepository;
 
     @Autowired
-    public DeliveryService(EntityManager entityManager) {
+    public DeliveryService(EntityManager entityManager, DeliveryEquipmentRepository deliveryEquipmentRepository,
+                           DeliveryAutoRepository deliveryAutoRepository, EquipmentRepository equipmentRepository,
+                           AutoRepository autoRepository)
+    {
         this.entityManager = entityManager;
+        this.deliveryEquipmentRepository = deliveryEquipmentRepository;
+        this.deliveryAutoRepository = deliveryAutoRepository;
     }
 
     public String doDelivery(int minerId)    {
@@ -33,6 +49,18 @@ public class DeliveryService {
             }
             String reason = rootException.getLocalizedMessage();
             return reason.substring(reason.indexOf(":") + 2, reason.indexOf("\n"));
+        }
+        Optional<Integer> equipId = deliveryEquipmentRepository.findEquipIdByMinerId(minerId);
+
+        if (equipId.isPresent()) {
+            System.out.println(equipId.get());
+            String equipmentName = equipmentRepository.findByEquipmentId(equipId.get()).map(Equipment::getName).orElse("");
+            return "Оборудование [" + equipId.get() + "] " + equipmentName.charAt(0) + equipmentName.substring(1).toLowerCase() + "выдано";
+        } else {
+            Optional<Integer> autoId = deliveryAutoRepository.findAutoIdByMinerId(minerId);
+            if (autoId.isPresent()) {
+                return "Авто [" + autoId.get() + "] " + "выдано";
+            }
         }
 
         return "";
