@@ -22,7 +22,7 @@ public class DeliveryController {
     public ResponseEntity<String> addDelivering(@PathVariable @RequestBody int minerId) {
         String message = this.deliveryService.doDelivery(minerId);
         if (message.contains("[")) {
-            return new ResponseEntity<>(HttpStatus.OK);
+            return ResponseEntity.status(HttpStatus.OK).body(message);
         } else {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(message);
         }
