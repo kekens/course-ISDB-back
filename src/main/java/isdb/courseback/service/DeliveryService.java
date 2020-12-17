@@ -32,6 +32,8 @@ public class DeliveryService {
         this.entityManager = entityManager;
         this.deliveryEquipmentRepository = deliveryEquipmentRepository;
         this.deliveryAutoRepository = deliveryAutoRepository;
+        this.equipmentRepository = equipmentRepository;
+        this.autoRepository = autoRepository;
     }
 
     public String doDelivery(int minerId)    {
@@ -55,7 +57,7 @@ public class DeliveryService {
         if (equipId.isPresent()) {
             System.out.println(equipId.get());
             String equipmentName = equipmentRepository.findByEquipmentId(equipId.get()).map(Equipment::getName).orElse("");
-            return "Оборудование [" + equipId.get() + "] " + equipmentName.charAt(0) + equipmentName.substring(1).toLowerCase() + "выдано";
+            return "Оборудование [" + equipId.get() + "] " + equipmentName.charAt(0) + equipmentName.substring(1).toLowerCase() + " выдано";
         } else {
             Optional<Integer> autoId = deliveryAutoRepository.findAutoIdByMinerId(minerId);
             if (autoId.isPresent()) {
