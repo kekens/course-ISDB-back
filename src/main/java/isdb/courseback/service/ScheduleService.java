@@ -18,9 +18,7 @@ public class ScheduleService {
     }
 
     public List<Schedule> showAllSchedule(int brigadeId) {
-        List<Schedule> scheduleList = scheduleRepository.findAllByBrigadeId(brigadeId);
-        System.out.println(scheduleList.get(0).getWorkDate());
-        return scheduleRepository.findAllByBrigadeId(brigadeId);
+        return this.scheduleRepository.findAllByBrigadeId(brigadeId);
     }
 
 }
