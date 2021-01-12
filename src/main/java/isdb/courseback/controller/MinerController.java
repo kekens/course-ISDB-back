@@ -1,6 +1,6 @@
 package isdb.courseback.controller;
 
-import isdb.courseback.dto.MinerDeliveryResponse;
+import isdb.courseback.dto.MinerPartResponse;
 import isdb.courseback.model.Miner;
 import isdb.courseback.service.MinerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +28,7 @@ public class MinerController {
     }
 
     @GetMapping("/all/{id}")
-    public ResponseEntity<List<MinerDeliveryResponse>> showMinerDeliveryByBrigadeId(@PathVariable @RequestBody int id) {
+    public ResponseEntity<List<MinerPartResponse>> showMinerDeliveryByBrigadeId(@PathVariable @RequestBody int id) {
         return new ResponseEntity<>(minerService.showMinerDeliveryByBrigadeId(id), HttpStatus.OK);
     }
 

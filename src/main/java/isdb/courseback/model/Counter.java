@@ -11,16 +11,14 @@ import javax.persistence.Table;
 
 @Entity
 @Data
-@Table(name = "equipment")
+@Table(name = "Counter")
 @NoArgsConstructor
 @AllArgsConstructor
-public class Equipment {
-
+public class Counter {
     @Id
-    @Column(name = "equipment_id")
-    private int equipmentId;
-
     @Column(name = "name")
     private String name;
 
+    @Column(name = "count")
+    private int count;
 }

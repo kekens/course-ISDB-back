@@ -1,6 +1,6 @@
 package isdb.courseback.service;
 
-import isdb.courseback.dto.MinerDeliveryResponse;
+import isdb.courseback.dto.MinerPartResponse;
 import isdb.courseback.model.BrigadeRecord;
 import isdb.courseback.model.Miner;
 import isdb.courseback.repository.BrigadeRecordRepository;
@@ -36,24 +36,24 @@ public class MinerService {
         return minerRepository.findByMinerId(id);
     }
 
-    public List<MinerDeliveryResponse> showMinerDeliveryByBrigadeId(int brigadeId) {
+    public List<MinerPartResponse> showMinerDeliveryByBrigadeId(int brigadeId) {
         List<Integer> deliveryMinerId = deliveryEquipmentRepository.findAllMinerId();
         deliveryMinerId.addAll(deliveryAutoRepository.findAllMinerId());
         List<BrigadeRecord> brigadeRecords = deliveryMinerId.isEmpty() ? brigadeRecordRepository.findAllByBrigadeId(brigadeId) :
                 brigadeRecordRepository.findAllByBrigadeIdAndMinerIdNotIn(brigadeId, deliveryMinerId);
         System.out.println(brigadeRecords);
 
-        List<MinerDeliveryResponse> minerDeliveryResponseList = new ArrayList<MinerDeliveryResponse>();
+        List<MinerPartResponse> minerPartResponseList = new ArrayList<MinerPartResponse>();
         for (BrigadeRecord brigadeRec:
              brigadeRecords)
         {
-            minerDeliveryResponseList.add(MinerDeliveryResponse.builder().
+            minerPartResponseList.add(MinerPartResponse.builder().
                     minerId(brigadeRec.getMinerId())
                     .name(minerRepository.findByMinerId(brigadeRec.getMinerId()).map(Miner::getMinerName).orElse(""))
                     .part(brigadeRec.getPart())
                     .build());
         }
-        return minerDeliveryResponseList;
+        return minerPartResponseList;
     }
 
 

@@ -13,6 +13,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.ParameterMode;
 import javax.persistence.PersistenceException;
 import javax.persistence.StoredProcedureQuery;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -22,18 +23,15 @@ public class DeliveryService {
     private DeliveryEquipmentRepository deliveryEquipmentRepository;
     private DeliveryAutoRepository deliveryAutoRepository;
     private EquipmentRepository equipmentRepository;
-    private AutoRepository autoRepository;
 
     @Autowired
     public DeliveryService(EntityManager entityManager, DeliveryEquipmentRepository deliveryEquipmentRepository,
-                           DeliveryAutoRepository deliveryAutoRepository, EquipmentRepository equipmentRepository,
-                           AutoRepository autoRepository)
+                           DeliveryAutoRepository deliveryAutoRepository, EquipmentRepository equipmentRepository)
     {
         this.entityManager = entityManager;
         this.deliveryEquipmentRepository = deliveryEquipmentRepository;
         this.deliveryAutoRepository = deliveryAutoRepository;
         this.equipmentRepository = equipmentRepository;
-        this.autoRepository = autoRepository;
     }
 
     public String doDelivery(int minerId)    {
@@ -66,6 +64,10 @@ public class DeliveryService {
         }
 
         return "";
+    }
+
+    public List<Equipment> findAllDeliveryEquipmentByBrigadeId(int brigadeId) {
+        return null;
     }
 
 

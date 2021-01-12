@@ -1,5 +1,6 @@
 package isdb.courseback.controller;
 
+import isdb.courseback.model.Equipment;
 import isdb.courseback.service.DeliveryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,5 +27,10 @@ public class DeliveryController {
         } else {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(message);
         }
+    }
+
+    @GetMapping("/all/equipment/{brigadeId}")
+    public ResponseEntity<Equipment> findAllDeliveryEquipments(@PathVariable @RequestBody int brigadeId) {
+        return null;
     }
 }
