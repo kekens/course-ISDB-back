@@ -17,7 +17,6 @@ public class Magazine{
     @Column(name = "miner_id")
     private int minerId;
 
-    @Id
     @Column(name = "mine_name")
     private String mineName;
 
@@ -27,8 +26,9 @@ public class Magazine{
     @Column(name = "part")
     private String part;
 
+    @Id
     @Column(name = "date_work")
-    private Date date_work;
+    private Date dateWork;
 
     @Column(name = "rating")
     private int rating;

@@ -1,6 +1,5 @@
 package isdb.courseback.service;
 
-
 import isdb.courseback.dto.MinerPartResponse;
 import isdb.courseback.model.BrigadeRecord;
 import isdb.courseback.model.Magazine;
@@ -37,7 +36,7 @@ public class MagazineService {
                 magazine.setMineName(magazine.getMineName());
                 magazine.setBrigadeId(magazine.getBrigadeId());
                 magazine.setPart(magazine.getPart());
-                magazine.setDate_work(magazine.getDate_work());
+                magazine.setDateWork(magazine.getDateWork());
                 magazine.setRating(magazine.getRating());
                 magazineRepository.save(magazine);
                 System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");

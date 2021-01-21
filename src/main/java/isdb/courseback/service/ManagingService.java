@@ -2,6 +2,7 @@ package isdb.courseback.service;
 
 import isdb.courseback.dto.MinerPartResponse;
 import isdb.courseback.model.BrigadeRecord;
+import isdb.courseback.model.Miner;
 import isdb.courseback.repository.BrigadeRecordRepository;
 import isdb.courseback.repository.MinerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +42,22 @@ public class ManagingService {
                     .build());
         }
         return minerDeliveryResponseList;
+    }
+
+    public List<Miner> showMiners(){
+        System.out.println("??????????????????????????????????????");
+        System.out.println(minerRepository.showMiners());
+        System.out.println("++++++++++++++++++++++++++++++++++++++");
+        return minerRepository.showMiners();
+    }
+
+
+    public BrigadeRecord addBrigadeRecord(BrigadeRecord brigadeRecord){
+        brigadeRecord.setBrigadeId(brigadeRecord.getBrigadeId());
+        brigadeRecord.setMinerId(brigadeRecord.getMinerId());
+        brigadeRecord.setPart(brigadeRecord.getPart());
+        brigadeRecordRepository.save(brigadeRecord);
+        return brigadeRecord;
     }
 
     public void deleteBrigadeRecord(int minerId){
