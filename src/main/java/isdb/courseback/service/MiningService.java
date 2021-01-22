@@ -21,4 +21,8 @@ public class MiningService {
         return this.miningRepository.findAllByBrigadeId(brigadeId);
     }
 
+    public void addMining(Mining mining) {
+        miningRepository.save(mining);
+    }
+
 }
