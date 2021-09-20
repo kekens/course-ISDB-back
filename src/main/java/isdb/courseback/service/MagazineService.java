@@ -29,8 +29,6 @@ public class MagazineService {
                 return magazineRepository.findAllMagazineByMinerId(id);
         }
 
-
-
         public Magazine addMagazine(Magazine magazine){
                 magazine.setMinerId(magazine.getMinerId());
                 magazine.setMineName(magazine.getMineName());
@@ -43,25 +41,6 @@ public class MagazineService {
                 System.out.println(magazine);
                 System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
                 return magazine;
-        }
-
-
-        public List<MinerPartResponse> showManagingBrigadeId(int brigadeId){
-                List<BrigadeRecord> brigadeRecords = brigadeRecordRepository.findByBrigadeId(brigadeId);
-
-                List<MinerPartResponse> minerDeliveryResponseList = new ArrayList<MinerPartResponse>();
-
-                for (BrigadeRecord brigadeRec:
-                        brigadeRecords)
-                {
-                        minerDeliveryResponseList.add(MinerPartResponse.builder()
-                                .minerId(brigadeRec.getMinerId())
-                                .name(minerRepository.findNameByMinerId(brigadeRec.getMinerId()))
-                                .part(brigadeRec.getPart())
-                                .build());
-
-                }
-                return minerDeliveryResponseList;
         }
 
 }

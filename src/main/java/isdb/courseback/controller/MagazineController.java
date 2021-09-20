@@ -32,12 +32,4 @@ public class MagazineController {
     public ResponseEntity<Magazine> addMagazine(@RequestBody Magazine magazine) {
             return new ResponseEntity<>(magazineService.addMagazine(magazine), HttpStatus.OK);
     }
-
-    @GetMapping("/br/{brigadeId}")
-    public ResponseEntity<List<MinerPartResponse>> showManagingBrigadeId(@PathVariable @RequestBody int brigadeId){
-        System.out.println("--------------------------------------------------------------------------------------------------------");
-        System.out.println();
-        System.out.println("--------------------------------------------------------------------------------------------------------");
-        return new ResponseEntity<>(magazineService.showManagingBrigadeId(brigadeId), HttpStatus.OK);
-    }
 }

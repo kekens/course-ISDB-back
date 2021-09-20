@@ -66,9 +66,4 @@ public class DeliveryService {
         return "";
     }
 
-    public List<Equipment> findAllDeliveryEquipmentByBrigadeId(int brigadeId) {
-        return null;
-    }
-
-
 }
