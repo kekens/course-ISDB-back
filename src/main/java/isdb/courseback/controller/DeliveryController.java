@@ -29,8 +29,4 @@ public class DeliveryController {
         }
     }
 
-    @GetMapping("/all/equipment/{brigadeId}")
-    public ResponseEntity<Equipment> findAllDeliveryEquipments(@PathVariable @RequestBody int brigadeId) {
-        return null;
-    }
 }
