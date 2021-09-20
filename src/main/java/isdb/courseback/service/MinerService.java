@@ -41,9 +41,8 @@ public class MinerService {
         deliveryMinerId.addAll(deliveryAutoRepository.findAllMinerId());
         List<BrigadeRecord> brigadeRecords = deliveryMinerId.isEmpty() ? brigadeRecordRepository.findAllByBrigadeId(brigadeId) :
                 brigadeRecordRepository.findAllByBrigadeIdAndMinerIdNotIn(brigadeId, deliveryMinerId);
-        System.out.println(brigadeRecords);
 
-        List<MinerPartResponse> minerPartResponseList = new ArrayList<MinerPartResponse>();
+        List<MinerPartResponse> minerPartResponseList = new ArrayList<>();
         for (BrigadeRecord brigadeRec:
              brigadeRecords)
         {

@@ -32,11 +32,10 @@ public class ManagingService {
     public List<MinerPartResponse> showManagingByBrigadeId(int brigadeId) {
 
         List<BrigadeRecord> brigadeRecords = brigadeRecordRepository.findAllByBrigadeId(brigadeId);
-        System.out.println("================================================================================");
-        System.out.println(brigadeRecords);
-        System.out.println("================================================================================");
 
-        List<MinerPartResponse> minerDeliveryResponseList = new ArrayList<MinerPartResponse>();
+        printBrigadeRecords(brigadeRecords);
+
+        List<MinerPartResponse> minerDeliveryResponseList = new ArrayList<>();
         for (BrigadeRecord brigadeRec:
                 brigadeRecords)
         {
@@ -47,6 +46,12 @@ public class ManagingService {
                     .build());
         }
         return minerDeliveryResponseList;
+    }
+
+    private void printBrigadeRecords(List<BrigadeRecord> brigadeRecords) {
+        System.out.println("================================================================================");
+        System.out.println(brigadeRecords);
+        System.out.println("================================================================================");
     }
 
     public List<Miner> showMiners(){
