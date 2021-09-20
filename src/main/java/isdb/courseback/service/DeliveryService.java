@@ -50,16 +50,17 @@ public class DeliveryService {
             return reason.substring(reason.indexOf(":") + 2, reason.indexOf("\n"));
         }
 
-        Optional<Integer> equipId = deliveryEquipmentRepository.findEquipIdByMinerId(minerId);
+        Optional<Integer> optionalEquipId = deliveryEquipmentRepository.findEquipIdByMinerId(minerId);
 
-        if (equipId.isPresent()) {
-            System.out.println(equipId.get());
-            String equipmentName = equipmentRepository.findByEquipmentId(equipId.get()).map(Equipment::getName).orElse("");
-            return "Оборудование [" + equipId.get() + "] " + equipmentName.charAt(0) + equipmentName.substring(1).toLowerCase() + " выдано";
+        if (optionalEquipId.isPresent()) {
+            int equipId = optionalEquipId.get();
+            System.out.println(equipId);
+            String equipmentName = equipmentRepository.findByEquipmentId(equipId).map(Equipment::getName).orElse("");
+            return "Оборудование [" + equipId + "] " + equipmentName.charAt(0) + equipmentName.substring(1).toLowerCase() + " выдано";
         } else {
-            Optional<Integer> autoId = deliveryAutoRepository.findAutoIdByMinerId(minerId);
-            if (autoId.isPresent()) {
-                return "Авто [" + autoId.get() + "] " + "выдано";
+            Optional<Integer> optionalAutoId = deliveryAutoRepository.findAutoIdByMinerId(minerId);
+            if (optionalAutoId.isPresent()) {
+                return "Авто [" + optionalAutoId.get() + "] " + "выдано";
             }
         }
 
