@@ -17,7 +17,7 @@ public class MiningService {
         this.miningRepository = miningRepository;
     }
 
-    public List<Mining> findAllMinings(int brigadeId) {
+    public List<Mining> showAllMinings(int brigadeId) {
         return this.miningRepository.findAllByBrigadeId(brigadeId);
     }
 

@@ -1,6 +1,5 @@
 package isdb.courseback.controller;
 
-import isdb.courseback.dto.MessageMinerDto;
 import isdb.courseback.model.Mining;
 import isdb.courseback.service.MiningService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +21,8 @@ public class MiningController {
     }
 
     @GetMapping("all/{id}")
-    public ResponseEntity<List<Mining>> findAllMinings(@PathVariable @RequestBody int id) {
-        return new ResponseEntity<>(this.miningService.findAllMinings(id), HttpStatus.OK);
+    public ResponseEntity<List<Mining>> showAllMinings(@PathVariable @RequestBody int id) {
+        return new ResponseEntity<>(this.miningService.showAllMinings(id), HttpStatus.OK);
     }
 
     @PostMapping("/add")

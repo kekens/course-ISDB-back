@@ -1,7 +1,5 @@
 package isdb.courseback.service;
 
-import isdb.courseback.dto.MinerPartResponse;
-import isdb.courseback.model.BrigadeRecord;
 import isdb.courseback.model.Magazine;
 import isdb.courseback.repository.BrigadeRecordRepository;
 import isdb.courseback.repository.MagazineRepository;
@@ -9,7 +7,6 @@ import isdb.courseback.repository.MinerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -29,7 +26,7 @@ public class MagazineService {
                 return magazineRepository.findAllMagazineByMinerId(id);
         }
 
-        public Magazine addMagazine(Magazine magazine){
+        public Magazine addMagazineRecord(Magazine magazine){
                 magazine.setMinerId(magazine.getMinerId());
                 magazine.setMineName(magazine.getMineName());
                 magazine.setBrigadeId(magazine.getBrigadeId());
@@ -37,11 +34,11 @@ public class MagazineService {
                 magazine.setDateWork(magazine.getDateWork());
                 magazine.setRating(magazine.getRating());
                 magazineRepository.save(magazine);
-                printMagazine(magazine);
+                printMagazineRecord(magazine);
                 return magazine;
         }
 
-        private void printMagazine(Magazine magazine) {
+        private void printMagazineRecord(Magazine magazine) {
                 System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
                 System.out.println(magazine);
                 System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");

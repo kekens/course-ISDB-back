@@ -22,7 +22,7 @@ public class MessageMinerController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<String> addMesage(@RequestBody MessageMinerDto messageMinerDto) {
+    public ResponseEntity<String> addMessage(@RequestBody MessageMinerDto messageMinerDto) {
         if (messageMinerService.addMessage(messageMinerDto)) {
             return new ResponseEntity<>(HttpStatus.OK);
         } else {
@@ -31,7 +31,7 @@ public class MessageMinerController {
     }
 
     @GetMapping("all/{minerId}")
-    public ResponseEntity<List<MessageMiner>> showAllMinerMesages(@PathVariable int minerId) {
+    public ResponseEntity<List<MessageMiner>> showAllMinerMessages(@PathVariable int minerId) {
         return new ResponseEntity<>(messageMinerService.showAllMinerMessages(minerId), HttpStatus.OK);
     }
 

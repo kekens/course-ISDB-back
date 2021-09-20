@@ -3,7 +3,6 @@ package isdb.courseback.controller;
 
 import java.util.List;
 
-import isdb.courseback.dto.MinerPartResponse;
 import isdb.courseback.model.Magazine;
 import isdb.courseback.service.MagazineService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +28,7 @@ public class MagazineController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Magazine> addMagazine(@RequestBody Magazine magazine) {
-            return new ResponseEntity<>(magazineService.addMagazine(magazine), HttpStatus.OK);
+    public ResponseEntity<Magazine> addMagazineRecord(@RequestBody Magazine magazine) {
+            return new ResponseEntity<>(magazineService.addMagazineRecord(magazine), HttpStatus.OK);
     }
 }

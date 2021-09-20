@@ -29,7 +29,7 @@ public class ManagingService {
         this.messageMinerService = messageMinerService;
     }
 
-    public List<MinerPartResponse> showManagingByBrigadeId(int brigadeId) {
+    public List<MinerPartResponse> showBrigadeRecordsByBrigadeId(int brigadeId) {
         List<BrigadeRecord> brigadeRecords = brigadeRecordRepository.findAllByBrigadeId(brigadeId);
 
         printBrigadeRecords(brigadeRecords);
