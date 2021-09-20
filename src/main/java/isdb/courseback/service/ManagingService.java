@@ -30,7 +30,6 @@ public class ManagingService {
     }
 
     public List<MinerPartResponse> showManagingByBrigadeId(int brigadeId) {
-
         List<BrigadeRecord> brigadeRecords = brigadeRecordRepository.findAllByBrigadeId(brigadeId);
 
         printBrigadeRecords(brigadeRecords);
@@ -45,6 +44,7 @@ public class ManagingService {
                     .part(brigadeRec.getPart())
                     .build());
         }
+
         return minerDeliveryResponseList;
     }
 
