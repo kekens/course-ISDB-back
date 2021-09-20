@@ -34,9 +34,8 @@ public class DeliveryService {
         this.equipmentRepository = equipmentRepository;
     }
 
-    public String doDelivery(int minerId)    {
-        StoredProcedureQuery query = entityManager
-                .createStoredProcedureQuery("do_delivery_by_miner_id");
+    public String doDelivery(int minerId) {
+        StoredProcedureQuery query = entityManager.createStoredProcedureQuery("do_delivery_by_miner_id");
         query.registerStoredProcedureParameter("min_id", Integer.class, ParameterMode.IN);
         query.setParameter("min_id", minerId);
 
@@ -50,6 +49,7 @@ public class DeliveryService {
             String reason = rootException.getLocalizedMessage();
             return reason.substring(reason.indexOf(":") + 2, reason.indexOf("\n"));
         }
+
         Optional<Integer> equipId = deliveryEquipmentRepository.findEquipIdByMinerId(minerId);
 
         if (equipId.isPresent()) {

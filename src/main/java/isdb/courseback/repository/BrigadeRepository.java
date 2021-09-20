@@ -9,6 +9,4 @@ import java.util.Optional;
 @Repository
 public interface BrigadeRepository extends CrudRepository<Brigade, Long> {
 
-    Optional<Brigade> findByForemanId(int foremanId);
-
 }

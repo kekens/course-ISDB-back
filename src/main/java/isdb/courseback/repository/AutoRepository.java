@@ -8,6 +8,4 @@ import java.util.Optional;
 
 public interface AutoRepository extends CrudRepository<Auto, Long> {
 
-    Optional<Auto> findByAutoId(int equipId);
-
 }
