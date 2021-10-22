@@ -6,11 +6,13 @@ import java.util.List;
 import isdb.courseback.dto.MinerPartResponse;
 import isdb.courseback.model.Magazine;
 import isdb.courseback.service.MagazineService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@Slf4j
 @RestController
 @RequestMapping("api/magazine")
 public class MagazineController {
@@ -24,7 +26,6 @@ public class MagazineController {
 
     @GetMapping("/all/{id}")
     public ResponseEntity<List<Magazine>> showMinerMagazine(@PathVariable @RequestBody int id) {
-        System.out.println(magazineService.showMinerMagazine(id));
         return new ResponseEntity<>(magazineService.showMinerMagazine(id), HttpStatus.OK);
     }
 
@@ -35,9 +36,9 @@ public class MagazineController {
 
     @GetMapping("/br/{brigadeId}")
     public ResponseEntity<List<MinerPartResponse>> showManagingBrigadeId(@PathVariable @RequestBody int brigadeId){
-        System.out.println("--------------------------------------------------------------------------------------------------------");
-        System.out.println();
-        System.out.println("--------------------------------------------------------------------------------------------------------");
+        log.info("--------------------------------------------------------------------------------------------------------");
+        log.info("\n");
+        log.info("--------------------------------------------------------------------------------------------------------");
         return new ResponseEntity<>(magazineService.showManagingBrigadeId(brigadeId), HttpStatus.OK);
     }
 }

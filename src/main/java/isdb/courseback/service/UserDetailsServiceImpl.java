@@ -7,8 +7,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-//import pip.pip4back.model.User;
-//import pip.pip4back.repository.UserRepository;
 import isdb.courseback.repository.UserRepository;
 import isdb.courseback.model.User;
 
@@ -33,8 +31,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 true, true, true, true, getAuthorities("user"));
     }
 
-    private Collection<? extends GrantedAuthority> getAuthorities(String role_user) {
-        return Collections.singletonList(new SimpleGrantedAuthority(role_user));
+    private Collection<? extends GrantedAuthority> getAuthorities(String roleUser) {
+        return Collections.singletonList(new SimpleGrantedAuthority(roleUser));
     }
 
 }

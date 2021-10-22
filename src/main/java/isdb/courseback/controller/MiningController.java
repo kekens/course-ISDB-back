@@ -1,6 +1,5 @@
 package isdb.courseback.controller;
 
-import isdb.courseback.dto.MessageMinerDto;
 import isdb.courseback.model.Mining;
 import isdb.courseback.service.MiningService;
 import org.springframework.beans.factory.annotation.Autowired;

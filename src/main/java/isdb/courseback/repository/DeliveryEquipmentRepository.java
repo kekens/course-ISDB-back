@@ -1,7 +1,6 @@
 package isdb.courseback.repository;
 
 import isdb.courseback.model.DeliveryEquipment;
-import isdb.courseback.model.Equipment;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;

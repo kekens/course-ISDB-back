@@ -25,7 +25,6 @@ public class MagazineService {
                 this.brigadeRecordRepository = brigadeRecordRepository;
         }
         public List<Magazine> showMinerMagazine(int id) {
-                System.out.println(magazineRepository.findAllMagazineByMinerId(id));
                 return magazineRepository.findAllMagazineByMinerId(id);
         }
 
@@ -39,9 +38,6 @@ public class MagazineService {
                 magazine.setDateWork(magazine.getDateWork());
                 magazine.setRating(magazine.getRating());
                 magazineRepository.save(magazine);
-                System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-                System.out.println(magazine);
-                System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
                 return magazine;
         }
 
@@ -49,7 +45,7 @@ public class MagazineService {
         public List<MinerPartResponse> showManagingBrigadeId(int brigadeId){
                 List<BrigadeRecord> brigadeRecords = brigadeRecordRepository.findByBrigadeId(brigadeId);
 
-                List<MinerPartResponse> minerDeliveryResponseList = new ArrayList<MinerPartResponse>();
+                List<MinerPartResponse> minerDeliveryResponseList = new ArrayList<>();
 
                 for (BrigadeRecord brigadeRec:
                         brigadeRecords)

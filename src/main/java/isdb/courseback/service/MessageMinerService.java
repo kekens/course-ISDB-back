@@ -27,7 +27,6 @@ public class MessageMinerService {
         try {
             this.messageMinerRepository.save(messageMiner);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
             return false;
         }
 

@@ -17,7 +17,7 @@ public class MagazineDto {
   private int minerId;
   private String name;
   private String part;
-  private Date date_work;
+  private Date dateWork;
 
 
 }

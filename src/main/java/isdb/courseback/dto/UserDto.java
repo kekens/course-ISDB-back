@@ -8,7 +8,6 @@ import javax.validation.constraints.Pattern;
 
 @Data
 public class UserDto {
-
     @NotNull
     private int id;
     @NotBlank(message = "Username is required")
@@ -17,5 +16,4 @@ public class UserDto {
     @NotBlank(message = "Password is required")
     @Pattern(regexp = "[^а-я]+", message = "Password must fit pattern")
     private String password;
-
 }

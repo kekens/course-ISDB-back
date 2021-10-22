@@ -3,6 +3,7 @@ package isdb.courseback.controller;
 
 import isdb.courseback.dto.MinerPartResponse;
 import isdb.courseback.model.BrigadeRecord;
+import isdb.courseback.model.Miner;
 import isdb.courseback.service.ManagingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +26,7 @@ public class ManagingController  {
     }
 
     @GetMapping("/miners")
-    public ResponseEntity showMiners(){
+    public ResponseEntity<List<Miner>> showMiners(){
         return new ResponseEntity<>(managingService.showMiners(), HttpStatus.OK);
     }
 
@@ -41,7 +42,7 @@ public class ManagingController  {
     }
 
     @GetMapping("/delete/{minerId}")
-    public ResponseEntity<String> DeleteByMinerId(@PathVariable(value = "minerId") int minerId){
+    public ResponseEntity<String> deleteByMinerId(@PathVariable(value = "minerId") int minerId){
         managingService.deleteBrigadeRecord(minerId);
         return new ResponseEntity<>(HttpStatus.OK);
     }

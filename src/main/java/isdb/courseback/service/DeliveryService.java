@@ -1,8 +1,6 @@
 package isdb.courseback.service;
 
-import isdb.courseback.model.Auto;
 import isdb.courseback.model.Equipment;
-import isdb.courseback.repository.AutoRepository;
 import isdb.courseback.repository.DeliveryAutoRepository;
 import isdb.courseback.repository.DeliveryEquipmentRepository;
 import isdb.courseback.repository.EquipmentRepository;
@@ -13,7 +11,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.ParameterMode;
 import javax.persistence.PersistenceException;
 import javax.persistence.StoredProcedureQuery;
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -53,7 +50,6 @@ public class DeliveryService {
         Optional<Integer> equipId = deliveryEquipmentRepository.findEquipIdByMinerId(minerId);
 
         if (equipId.isPresent()) {
-            System.out.println(equipId.get());
             String equipmentName = equipmentRepository.findByEquipmentId(equipId.get()).map(Equipment::getName).orElse("");
             return "Оборудование [" + equipId.get() + "] " + equipmentName.charAt(0) + equipmentName.substring(1).toLowerCase() + " выдано";
         } else {
@@ -65,10 +61,5 @@ public class DeliveryService {
 
         return "";
     }
-
-    public List<Equipment> findAllDeliveryEquipmentByBrigadeId(int brigadeId) {
-        return null;
-    }
-
 
 }

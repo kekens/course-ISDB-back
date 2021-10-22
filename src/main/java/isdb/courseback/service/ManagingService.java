@@ -3,7 +3,6 @@ package isdb.courseback.service;
 import isdb.courseback.dto.MessageMinerDto;
 import isdb.courseback.dto.MinerPartResponse;
 import isdb.courseback.model.BrigadeRecord;
-import isdb.courseback.model.MessageMiner;
 import isdb.courseback.model.Miner;
 import isdb.courseback.repository.BrigadeRecordRepository;
 import isdb.courseback.repository.MinerRepository;
@@ -32,11 +31,8 @@ public class ManagingService {
     public List<MinerPartResponse> showManagingByBrigadeId(int brigadeId) {
 
         List<BrigadeRecord> brigadeRecords = brigadeRecordRepository.findAllByBrigadeId(brigadeId);
-        System.out.println("================================================================================");
-        System.out.println(brigadeRecords);
-        System.out.println("================================================================================");
 
-        List<MinerPartResponse> minerDeliveryResponseList = new ArrayList<MinerPartResponse>();
+        List<MinerPartResponse> minerDeliveryResponseList = new ArrayList<>();
         for (BrigadeRecord brigadeRec:
                 brigadeRecords)
         {
@@ -50,9 +46,6 @@ public class ManagingService {
     }
 
     public List<Miner> showMiners(){
-        System.out.println("??????????????????????????????????????");
-        System.out.println(minerRepository.showMiners());
-        System.out.println("++++++++++++++++++++++++++++++++++++++");
         return minerRepository.showMiners();
     }
 
